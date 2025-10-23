@@ -1,37 +1,54 @@
-// ============================================================================
-//         PROJETO WAR ESTRUTURADO - DESAFIO DE CÓDIGO
-// ============================================================================
-//        
-// ============================================================================
-//
-// OBJETIVOS:
-// - Modularizar completamente o código em funções especializadas.
-// - Implementar um sistema de missões para um jogador.
-// - Criar uma função para verificar se a missão foi cumprida.
-// - Utilizar passagem por referência (ponteiros) para modificar dados e
-//   passagem por valor/referência constante (const) para apenas ler.
-// - Foco em: Design de software, modularização, const correctness, lógica de jogo.
-//
-// ============================================================================
+#include <stdio.h>
+#include <string.h>
 
-// Inclusão das bibliotecas padrão necessárias para entrada/saída, alocação de memória, manipulação de strings e tempo.
+struct Territorio //Criando a strutura de territorio
+{
+   char nome [30];
+   char cor [10];
+   int tropas;
+};
 
-// --- Constantes Globais ---
-// Definem valores fixos para o número de territórios, missões e tamanho máximo de strings, facilitando a manutenção.
+int main(){
+    struct Territorio territorios[4]; //Delimitando a quantidade de territorios
 
-// --- Estrutura de Dados ---
-// Define a estrutura para um território, contendo seu nome, a cor do exército que o domina e o número de tropas.
+printf("--- Bem vindo ao jogo War! ---\n\n");
+printf("Por favor, siga com o cadastro de 5 territorios para continuar:\n\n");
 
-// --- Protótipos das Funções ---
-// Declarações antecipadas de todas as funções que serão usadas no programa, organizadas por categoria.
-// Funções de setup e gerenciamento de memória:
-// Funções de interface com o usuário:
-// Funções de lógica principal do jogo:
-// Função utilitária:
+for (int i = 0; i < 5; i++) //laço de repetição para preenchimento dos dados
+{
+    printf("Digite as informacoes do territorio numero %d: \n", i + 1);
+    
+    printf("------------------------------------------------------\n");
 
-// --- Função Principal (main) ---
-// Função principal que orquestra o fluxo do jogo, chamando as outras funções em ordem.
-int main() {
+    printf("Digite o nome do territorio: ");
+    fgets(territorios[i].nome, 30, stdin);
+
+    printf("Digite a cor do territorio: ");
+    fgets(territorios[i].cor, 10, stdin);
+
+    printf("Digite o numero de tropas deste territorio: ");
+    scanf("%d", &territorios[i].tropas);
+
+    printf("\n\n");
+
+    while (getchar() != '\n');//Limpeza de Buffer
+}
+
+for (int i = 0; i < 5; i++) //laço de repetição para exibição dos dados
+{
+    printf("Segue abaixo as informacoes cadastradas dos 5 territorios:\n\n");
+
+    printf("Territorio %d\n", i + 1);
+    printf("Nome: %s", territorios[i].nome);
+    printf("Cor: %s", territorios[i].cor);
+    printf("Quantidade de tropas: %d", territorios[i].tropas);
+
+    printf("\n------------------------------------------------------\n\n");
+}
+
+return 0;
+}
+
     // 1. Configuração Inicial (Setup):
     // - Define o locale para português.
     // - Inicializa a semente para geração de números aleatórios com base no tempo atual.
@@ -51,8 +68,7 @@ int main() {
     // 3. Limpeza:
     // - Ao final do jogo, libera a memória alocada para o mapa para evitar vazamentos de memória.
 
-    return 0;
-}
+
 
 // --- Implementação das Funções ---
 
